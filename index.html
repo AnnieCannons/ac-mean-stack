@@ -44,57 +44,561 @@
 
         <!--Introduction slide-->
         <section>
-            <h1>Class Name</h1>
+            <h1>Rapid Prototyping with MEAN Stack</h1>
             <h3></h3>
-            <p>
-
-            </p>
+            <p><a href="http://yonet.github.io/DeveloperWeek-Mean/#/" target="_blank">http://bit.ly/DeveloperWeekMean</a></p>
         </section>
         <!--/Intro Slides-->
 
-        <section>
-            <h2></h2>
-            <pre><code class="hljs" data-trim contenteditable>
+       <section>
+					<h3>Rapid Prototyping with MEAN Stack</h3>
+					<p>Aysegul Yonet / <a href="https://twitter.com/tevgende" target="_blank">@AysegulYonet</a>
+					</p>
+					<p><a href="http://yonet.github.io/DeveloperWeek-Mean/#/" target="_blank">http://bit.ly/DeveloperWeekMean</a></p>
+				</section>
+				<section>
+					<h2>What we will use</h2>
+					<ul>
+						<li><a href="http://yeoman.io/" target="_blank">Yeoman</a>
+						<br/>
+						<img src="images/yo.png" alt=""></li>
+						<li><a href="http://mean.io/#!/" target="_blank">MEAN</a>
+						<br/>
+						<img src="images/ninja.png" alt="">
+						</li>
+					</ul>
+				</section>
 
-            </code></pre>
-            <p>
-                <a href=""></a>
-            </p>
-            <aside class="notes"></aside>
-        </section>
+				<section>
+					<h2>What is MEAN?</h2>
+					<ul>
+						<li><a href="http://www.mongodb.org/" target="_blank">MongoDB: NoSQL Database.</a></li>
+						<li><a href="http://expressjs.com/" target="_blank">Express: web framework for Node.js.</a></li>
+						<li><a href="https://angularjs.org/" target="_blank">AngularJS: HTML enhanced for web apps!</a></li>
+						<li><a href="http://nodejs.org/" target="_blank">Node: is a platform built on Google's V8 Engine.</a></li>
+					</ul>
+
+					<aside class="notes">Cons: You have to manage memory leaks, keep in mind CPU-bound computations off the event loop and be very careful with exception handling.
+					</aside>
+				</section>
+
+				<section>
+					<img src="images/skepticKid.jpg" alt="">
+				</section>
+
+				<section>
+					<h2><a href="http://bit.ly/oscars-repo" target="_blank">What we will build</a></h2>
+					<p>Oscar Nominees Voting Form</p>
+					<ul>
+						<li>Login</li>
+						<li>Voting for nominees</li>
+						<li>Create Schemas for our database</li>
+						<li>Submit and retrieve data from the database</li>
+					</ul>
+				</section>
+				<section>
+					<h2>What you need to install</h2>
+					<ul>
+						<li><a href="http://nodejs.org/" target="_blank">Node.js</a> website/
+							<pre><code data-trim contenteditable>
+brew install node
+							</code></pre>
+						</li>
+						<li><a href="http://yeoman.io/learning/index.html" target="_blank">Yeoman</a>
+							<pre><code data-trim contenteditable>
+npm install -g yo bower grunt-cli gulp
+							</code></pre>
+						</li>
+						<li><a href="http://docs.mongodb.org/manual/installation/" target="_blank">MongoDB</a>
+							<pre><code data-trim contenteditable>
+brew update
+brew install mongodb
+//or
+brew install mongodb --with-openssl
+							</code></pre>
+						</li>
+
+					</ul>
+				</section>
+				<section>
+					<h2>Running MongoDB for the first time</h2>
+					<p>Create a /data/db directory</p>
+					<pre><code data-trim contenteditable>
+mkdir -p /data/db
+					</code></pre>
+					<p>Make sure you have read/write access to the data directory.</p>
+					<pre><code data-trim contenteditable>
+sudo chmod 777 /data/db
+					</code></pre>
+					<p>To run the database</p>
+					<pre><code data-trim contenteditable>
+mongod
+					</code></pre>
+					<p>To access the database, run mongo in a new terminal window</p>
+					<pre><code data-trim contenteditable>
+mongo
+					</code></pre>
+					<a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/#id7" target="_blank">More info.</a>
+					<aside class="notes">
+						ls la to see the permission. The r, w, and x specify the read, write, and execute access, respectively.
+					</aside>
+
+				</section>
+
+				<section>
+					<h2><a href="http://bit.ly/mean-no-generator" target="_blank">Mean Stack without generators</a></h2>
+					<aside class="notes">Because the generated is made by experienced developers, they applies good practices in code organisation and style programming (like the environment configuration on the server side using node).</aside>
+				</section>
+
+				<section>
+					<h2>Step-0</h2>
+				</section>
+				<!-- Generator installation -->
+				<section>
+					<h2><a href="https://github.com/DaftMonk/generator-angular-fullstack" target="_blank">Angular Full-Stack Generator</a></h2>
+					<ul>
+						<li>Install generator globally.
+							<pre><code data-trim contenteditable>
+npm install -g generator-angular-fullstack
+							</code></pre>
+						</li>
+						<li>Make a new directory and cd into it.
+							<pre><code data-trim contenteditable>
+mkdir my-new-project && cd $_
+							</code></pre>
+						</li>
+						<li>Create your app with the generator.
+							<pre><code data-trim contenteditable>
+yo angular-fullstack [app-name]
+							</code></pre>
+						</li>
+						<li>Generator will install your dependencies.
+							<pre><code data-trim contenteditable>
+npm install && bower install
+							</code></pre>
+						</li>
+						<li>Run MongoDB in another terminal window.
+							<pre><code data-trim contenteditable>
+mongod
+							</code></pre>
+						</li>
+						<li>Run your Grunt server
+							<pre><code data-trim contenteditable>
+grunt serve
+							</code></pre>
+						</li>
+					</ul>
+					<aside class="notes">npm cache clean, bower cache clean. Note the file structure.</aside>
+				</section>
+				<!-- /Generator installation -->
+
+				<!-- Node -->
+				<section>
+					<section>
+						<h2>NodeJS</h2>
+					</section>
+
+					<section>
+						<h2>Core Modules</h2>
+						<ul>
+							<li>
+								<a href="http://nodejs.org/api/http.html#http_http" target="_blank">http</a>
+							</li>
+							<li>
+								<a href="http://nodejs.org/api/util.html" target="_blank">util</a>
+							</li>
+							<li>
+								<a href="http://nodejs.org/api/querystring.html" target="_blank">querystring</a>
+							</li>
+							<li>
+								<a href="http://nodejs.org/api/url.html" target="_blank">url</a>
+							</li>
+							<li>
+								<a href="http://nodejs.org/api/fs.html" target="_blank">fs</a>
+							</li>
+						</ul>
+						<aside class="notes">
+						Unlike other programming technologies, Node.js doesn’t come with a heavy standard library. The core modules of node.js are a bare minimum, and the rest can be cherry-picked via the NPM registry. 60,000+ npm modules.
+						</aside>
+					</section>
+					<!-- /Core Modules -->
+
+					<section>
+						<h2>Non Core Modules</h2>
+						<ul>
+							<li><a href="https://npmjs.org" target="_blank">NPM</a></li>
+							<li><a href="https://github.com/joyent/node/wiki/Modules" target="_blank">GitHub hosted list for Node.js modules maintained by Joyent</a></li>
+							<li><a href="http://nodetoolbox.com/" target="_blank">Node Tool Box</a></li>
+							<li><a href="http://eirikb.github.com/nipster/" target="_blank">Nipster</a></li>
+							<li><a href="http://nodejsmodules.org" target="_blank">NodeJsModules.org</a></li>
+						</ul>
+					</section>
+					<!-- /Non Core Modules -->
+
+					
+					<section>
+						<h2>http</h2>
+						<pre><code data-trim contenteditable>
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(1337, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:1337/');
+						</code></pre>
+						<h2>Launch</h2>
+						<pre><code data-trim contenteditable>
+node server
+						</code></pre>
+						<aside class="notes">This snippet creates a server with a callback function which contains the response handler code.
+						The req and res arguments have all the information about a given HTTP request and response correspondingly.
+						</aside>
+					</section>
+					<!-- /http -->
+
+					<!-- <section>
+						<h2>Requiring files with Node</h2>
+						<p>In addition, for including files, it’s possible to use longer statements with __dirname and path.join()—for example,
+						<pre><code data-trim contenteditable>
+require(path.join(__dirname, ,'routes', 'messages'));
+						</code></pre>
+						<p>This is a recommended approach,because path.join() will produce a path with valid slashes (forward or backward depending on your OS).</p>
+						<p>If require() points to a folder, Node.js attempts to read the index.js file in that folder.</p>
+						<p>__dirname is an absolute path to the file in which the global variable is called, whereas process.cwd is an absolute path to the process that runs the script. The latter might not be the same as the former if we started the program from adifferentfolder,suchas$ node ./code/program.js.</p>
+					</section> -->
+					<!-- /requiring -->
+				</section>
+				<!-- /Node -->
+				
+				<!-- Express -->
+				<section>
+					<section>
+						<h2>Express</h2>
+						<p>Enriches node’s native HTTP/HTTPS</p>
+					</section>
+
+					<section>
+						<h2>Simple express server.</h2>
+						<pre><code data-trim contenteditable>
+var express = require(express);
+var app = express();
+
+app.get('/', function(req, res) {
+	res.sendFile(__dirname + '/client/index.html');
+});
+
+var server = app.listen(3000, function () {
+  var host = server.address().address
+  var port = server.address().port
+  console.log('Example app listening at http://%s:%s', host, port)
+});
+						</code></pre>
+						<pre><code data-trim contenteditable>
+node server
+						</code></pre>
+						<aside class="notes">
+Middleware is a function with access to the request object (req), the response object (res), and the next middleware in line in the request-response cycle of an Express application, commonly denoted by a variable named next. Middleware can:
+
+Execute any code.
+Make changes to the request and the response objects.
+End the request-response cycle.
+Call the next middleware in the stack.
+						</aside>
+					</section>
+
+					
+				</section>
+				<!-- /Express -->
+
+				<section>
+					<h2><a href="https://github.com/Yonet/oscars-2015/tree/step-1#oscars-2015" target="_blank">Step-1</a></h2>
+
+				</section>
 
 
-        <!--Slide with list temp-->
-        <section>
-            <h2></h2>
-            <ul>
-                <li class="fragment"><a href="" target="_blank"></a></li>
-                <li class="fragment"></li>
-            </ul>
-            <p>
-                <a href=""></a>
-            </p>
-            <aside class="notes"></aside>
-        </section>
 
-        <!--<section>-->
-            <!--<h2>Clever Quotes</h2>-->
-            <!--<p>-->
-                <!--These guys come in two forms, inline: <q-->
-                    <!--cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">-->
-                <!--&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:-->
-            <!--</p>-->
-            <!--<blockquote-->
-                    <!--cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">-->
-                <!--&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of-->
-                <!--typewriters would-->
-                <!--reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;-->
-            <!--</blockquote>-->
-        <!--</section>-->
+				<!-- MongoDB -->
+				<section>
+					<section>
+						<h2>MongoDB</h2>
+						<p>NoSQL Document Database</p>
+						<ul>
+							<li>Dynamic Schema</li>
+							<li>Binary JSON</li>
+						</ul>
+						<p>More than that...</p>
+						<aside class="notes">
+							Full Index support, MapReduce and Aggregation, Scale and availablity...
+						</aside>
+
+					</section>
+
+					<section>
+						<h2><a href="http://mongoosejs.com/" target="_blank">Mongoose</a></h2>
+						<p>Elegant mongodb object modeling for node.js</p>
+						<pre><code data-trim contenteditable>
+npm install mongoose
+						</code></pre>
+						<pre><code data-trim contenteditable>
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+var Cat = mongoose.model('Cat', { name: String });
+
+var kitty = new Cat({ name: 'Zildjian' });
+kitty.save(function (err) {
+  if (err) // ...
+  console.log('meow');
+});
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Mongoose’s schema setup is defined by 3 types:</p>
+						<ul>
+							<li><a href="http://mongoosejs.com/docs/guide.html" target="_blank"></a>Schema</li>
+							<li>Connection</li>
+							<li>Model</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Schema</h2>
+						<p>A Schema is an object that defines the structure of any documents that will be stored in your MongoDB collection; it enables you to define types and validators for all of your data items.</p>
+						<aside class="notes">
+							Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Connection</h2>
+						<p>A Connection is a fairly standard wrapper around a database connection.</p>
+					</section>
+
+					<section>
+						<h2>Model</h2>
+						<p>A Model is an object that gives you easy access to a named collection, allowing you to query the collection and use the Schema to validate any documents you save to that collection.</p>
+						<aside class="notes">A model is a class with which we construct documents. We can access all of the kitten documents through our Kitten model.</aside>
+					</section>
+
+					<section>
+					<pre><code data-trim contenteditable>
+var Mongoose = require('mongoose');
+var myConnection = Mongoose.createConnection('localhost', 'mydatabase');
+
+var MySchema = new Mongoose.schema({ name : {
+    type : String,
+    default : 'Val',
+    enum : ['Val', 'Valeri', 'Valeri Karpov']
+  },
+created : {
+    type : Date,
+    default : Date.now
+  }
+}); 
+var MyModel = myConnection.model('mycollection', MySchema);
+var myDocument = new MyModel({});
+					</code></pre>
+					<aside class='notes'>
+					MongoDB uses named collections of arbitrary objects, and a Mongoose JS Model abstracts away this layer. Because of this, we don’t have to deal with tasks such as asynchronously telling MongoDB to switch to that collection, or work with the annoying createFromHexString function.
+						
+					</aside>
+					</section>
+					<section>
+						<p>Functions added to the methods property of a schema get compiled into the Model prototype and exposed on each document instance</p>
+						<pre><code data-trim contenteditable>
+// NOTE: methods must be added to the schema before compiling it with mongoose.model()
+kittySchema.methods.speak = function () {
+  var greeting = this.name
+    ? "Meow name is " + this.name
+    : "I don't have a name"
+  console.log(greeting);
+}
+
+var Kitten = mongoose.model('Kitten', kittySchema)
+						</code></pre>
+					</section>
+
+					<section>
+						<p>To find all of our kittens:</p>
+						<pre><code data-trim contenteditable>
+Kitten.find(function (err, kittens) {
+  if (err) return console.error(err);
+  console.log(kittens)
+});
+						</code></pre>
+						<p>To find specific ones: </p>
+						<pre><code data-trim contenteditable>
+Kitten.find({ name: /^Fluff/ }, callback);
+						</code></pre>
+					</section>
+					<section>
+						<p>You can find the database info on "oscars/server/config/environment/development.js"</p>
+						<pre><code data-trim contenteditable>
+mongo
+use oscars-dev
+show collections //users, things
+db.users.find() //to list all the users.
+						</code></pre>
+						
+					</section>
 
 
-        <!--You can link between slides internally,-->
-        <!--<a href="#/2/3">like this</a>.-->
+					<section>
+						<h2>Best Practices</h2>
+						<p>1 schema = 1 file</p>
+						<aside class="notes">A schema should never be declared in app.js, and you should never have multiple schemas in a single file (even if you intend to nest one schema in another). While it is often expedient to inline everything into app.js, not keeping schemas in separate files makes things more difficult in the long run. Separate files lowers the barrier to entry for understanding your code base and makes tracking changes much easier.
+						Mongoose can’t handle multi-level population yet, and populated fields are not Documents. Nesting schemas is helpful but it’s an incomplete solution. Design your schemas accordingly.
+						</aside>
+					</section>
+					
+				</section>
+				<!-- /MongoDB -->
+
+				<section>
+					<h2><a href="http://passportjs.org/" target="_blank">Passport</a></h2>
+					<p>An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.</p>
+				</section>
+
+				<!-- Angular -->
+				<section>
+					<section>
+						<h2>Angular</h2>
+					</section>
+
+					<section>
+						<h2>Parts that makes an Angular application</h2>
+						<ul>
+							<li><a href="http://jsfiddle.net/yonet3d/50fpkazx/1/" target="_blank">Controller</a></li>
+							<li><a href="http://jsfiddle.net/yonet3d/2pk4c2eo/2/" target="_blank">Directives</a></li>
+							<li><a href="https://docs.angularjs.org/api/ng/directive" target="_blank">Services</a></li>
+							<li><a href="https://docs.angularjs.org/api/ng/filter" target="_blank">Filters</a></li>
+						</ul>
+					</section>
+
+					<section>
+
+						<h2>Built in directives</h2>
+						<ul>
+							<li>ngModel: Binding the view into the model.
+							</li>
+							<li>ngRepeat: instantiates a template once per item from a collection</li>
+						</ul>
+						<pre><code data-trim contenteditable>
+<input type="text" ng-model="userName"> //input value is bind to $scope.userName in the controller
+<div ng-repeat="(key, value) in myObj"> {{key}} - {{value.name}} </div>
+						</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Filters</h2>
+						<pre><code data-trim contenteditable>
+yo angular-fullstack:filter truncate
+						</code></pre>
+						<pre><code data-trim contenteditable>
+angular.module('oscarsApp')
+  .filter('truncate', function () {
+    return function (text, length, end) {
+      if (isNaN(length))
+                length = 10;
+
+            if (end === undefined)
+                end = "...";
+
+            if (text.length <= length || text.length - end.length <= length) {
+                return text;
+            }
+            else {
+                return String(text).substring(0, length-end.length) + end;
+            }
+
+        };
+  });
+  						</code></pre>
+					</section>
+
+					<section>
+						<h2><a href="https://docs.angularjs.org/guide/services" target="_blank">Angular Services</a></h2>
+						<p>By Angular conventions, lowerCamelCase is used for factory names that won't be new'ed.</p>
+						<pre><code data-trim contenteditable>
+yo angular-fullstack:factory nomineesFactory
+						</code></pre>
+						<pre><code data-trim contenteditable>
+app.factory('nomineesFactory', [function(){
+  var nominees = {
+    categories:...
+  };
+  return nominees;
+}]);
+						</code></pre>
+					</section>
+					<section>
+						<p>To use the factory in your controller:</p>
+						<pre><code data-trim contenteditable>
+app.controller('MainCtrl', ['$scope','nomineesFactory',
+function($scope, nomineesFactory){
+	$scope.categories = nomineesFactory.categories;
+  ...
+)};
+						</code></pre>
+					</section>
+					<section><a href="https://github.com/Yonet/oscars-2015/tree/step-2#oscars-2015" target="_blank">Step-2</a></section>
+
+				</section>
+				<!-- Angular -->
+
+				
+				<section>
+					<h2>Deploying your app.</h2>
+					<p><a href="https://github.com/DaftMonk/generator-angular-fullstack#heroku" target="_blank">Heroku</a></p>
+					<p><a href="https://github.com/DaftMonk/generator-angular-fullstack#openshift" target="_blank">OpenShift</a></p>
+				</section>
+
+
+				<!-- Resources -->
+				<section>
+
+					<section>
+						<h2>More Resources</h2>
+					</section>
+
+					<section>
+						<h2>MongoDB Resources</h2>
+						<ul>
+							<li><a href="https://university.mongodb.com/" target="_blank">MongoDB University</a></li>
+							<li><a href="https://www.youtube.com/watch?v=PIWVFUtBV1Q" target="_blank">O'Reilly Webcast: MongoDB Schema Design</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Express Resources</h2>
+						<ul>
+							<li><a href="http://expressjs.com/guide/error-handling.html" target="_blank">Express Guide</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Angular Resources</h2>
+						<ul>
+							<li><a href="https://egghead.io/" target="_blank">EggHead.io</a></li>
+							<li><a href="http://www.meetup.com/AngularJS-SF/" target="_blank">Angular Meetup SF</a></li>
+							<li><a href="https://docs.angularjs.org/api" target="_blank">Angular API Docs</a></li>
+							<li><a href="http://www.ng-newsletter.com/" target="_blank">Ng-newsletter</a></li>
+							<li><a href="https://www.youtube.com/user/angularjs" target="_blank">Angular Youtube Channel</a></li>
+							<li><a href="https://github.com/jmcunningham/AngularJS-Learning" target="_blank">AngularJS learning Github Repo</a></li>
+							<li><a href="bit.ly/angular-slides" target="_blank">My Angular Workshop Slides</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Node Resources</h2>
+						<ul>
+							<li><a href="http://www.amazon.com/Practical-Node-js-Building-Real-World-Scalable/dp/1430265957/ref=sr_1_1?ie=UTF8&qid=1421392276&sr=8-1&keywords=azat+mardan" target="_blank">Practical Node.js/by Azat Mardan</a></li>
+						</ul>
+					</section>
+
+				</section>
 
 
         <section style="text-align: left;">
